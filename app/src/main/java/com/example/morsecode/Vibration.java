@@ -3,7 +3,9 @@ package com.example.morsecode;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
@@ -44,9 +46,12 @@ public class Vibration extends AppCompatActivity {
         letter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                vibrator.vibrate(200);
-                
-                vibrator.vibrate(500);
+                long[] timings = new long[] {200, 200, 500};
+                int[] amplitudes = new int[] { 100, 0, 100 };
+                int repeatIndex = -1;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, repeatIndex));
+                }
             }
         });
 
