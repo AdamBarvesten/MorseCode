@@ -16,6 +16,11 @@
             android:name=".Vibration"
             android:exported="false" />
         <activity
+            android:name=".SoundActivity"
+            android:exported="false"
+            android:label="@string/title_activity_sound"
+            android:theme="@style/Theme.MorseCode.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
