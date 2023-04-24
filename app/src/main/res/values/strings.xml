@@ -9,7 +9,9 @@
     <string name="previous">Previous</string>
 
     <string name="letter">Letter</string>
-    <string name="beep">Beep</string>
+    <string name="shortTone">Short Tone</string>
+    <string name="longTone">Long Tone</string>
+
 
 
 
