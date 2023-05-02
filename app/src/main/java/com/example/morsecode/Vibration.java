@@ -29,29 +29,16 @@ public class Vibration extends AppCompatActivity {
        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 
-       shortVibrate.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               vibrator.vibrate(200);
-           }
-       });
+       shortVibrate.setOnClickListener(view -> vibrator.vibrate(200));
 
-        longVibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(500);
-            }
-        });
+        longVibrate.setOnClickListener(view -> vibrator.vibrate(500));
 
-        letter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long[] timings = new long[] {200, 200, 500};
-                int[] amplitudes = new int[] { 100, 0, 100 };
-                int repeatIndex = -1;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, repeatIndex));
-                }
+        letter.setOnClickListener(view -> {
+            long[] timings = new long[] {200, 200, 500};
+            int[] amplitudes = new int[] { 100, 0, 100 };
+            int repeatIndex = -1;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, repeatIndex));
             }
         });
 
