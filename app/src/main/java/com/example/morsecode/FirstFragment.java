@@ -39,6 +39,28 @@ public class FirstFragment extends Fragment {
 
         binding.soundButton.setOnClickListener(view12 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SoundActivity));
+        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAccelerometer();
+            }
+        });
+
+        binding.soundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_SoundActivity);
+            }
+        });
+
+        binding.alphabetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_learnAlphabetActivity);
+            }
+        });
     }
 
     @Override

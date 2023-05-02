@@ -18,6 +18,9 @@
             android:id="@+id/action_FirstFragment_to_SoundActivity"
             app:destination="@id/soundActivity"
             app:enterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/action_FirstFragment_to_learnAlphabetActivity"
+            app:destination="@id/learnAlphabetActivity" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -34,4 +37,9 @@
         android:name="com.example.morsecode.SoundActivity"
         android:label="activity_sound"
         tools:layout="@layout/activity_sound" />
+    <activity
+        android:id="@+id/learnAlphabetActivity"
+        android:name="com.example.morsecode.LearnAlphabetActivity"
+        android:label="activity_learn_alphabet"
+        tools:layout="@layout/activity_learn_alphabet" />
 </navigation>
