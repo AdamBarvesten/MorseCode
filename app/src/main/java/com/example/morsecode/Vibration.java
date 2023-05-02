@@ -31,7 +31,7 @@ public class Vibration extends AppCompatActivity {
 
        shortVibrate.setOnClickListener(view -> vibrator.vibrate(200));
 
-        longVibrate.setOnClickListener(view -> vibrator.vibrate(500));
+       longVibrate.setOnClickListener(view -> vibrator.vibrate(500));
 
         letter.setOnClickListener(view -> {
             long[] timings = new long[] {200, 200, 500};
