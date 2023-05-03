@@ -20,61 +20,38 @@ public class SoundActivity extends AppCompatActivity {
         Button shortButton = findViewById(R.id.shortButton);
         Button longButton = findViewById(R.id.longButton);
         Button letterButton = findViewById(R.id.letterButton);
+
         Button shortButton2 = findViewById(R.id.shortButton2);
         Button longButton2 = findViewById(R.id.longButton2);
+        Button letterButton2 = findViewById(R.id.letterButton2);
+
         Button shortButton3 = findViewById(R.id.shortButton3);
         Button longButton3 = findViewById(R.id.longButton3);
+        Button letterButton3 = findViewById(R.id.letterButton3);
 
-        shortButton.setOnClickListener(view -> onBtnShort());
-        longButton.setOnClickListener(view -> onBtnLong());
-        shortButton2.setOnClickListener(view -> onBtnShort2());
-        longButton2.setOnClickListener(view -> onBtnLong2());
-        shortButton3.setOnClickListener(view -> onBtnShort3());
-        longButton3.setOnClickListener(view -> onBtnLong3());
-        letterButton.setOnClickListener(view -> onBtnLetter());
-    }
+        Button shortButton4 = findViewById(R.id.shortButton4);
+        Button longButton4 = findViewById(R.id.longButton4);
+        Button letterButton4 = findViewById(R.id.letterButton4);
 
-    private void playSound(int len){
-        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2,len);
-    }
-    private void playSound1(int len){
-        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1,len);
-    }
-    private void playSound2(int len){
-        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4,len);
-    }
-    private void playSound3(int len){
-        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_INTERCEPT,len);
-    }
-    private void playSound4(int len){
-        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ANSWER,len);
+        shortButton.setOnClickListener(view -> onBtnShort(1));
+        longButton.setOnClickListener(view -> onBtnLong(1));
+        letterButton.setOnClickListener(view -> onBtnLetter(1));
+
+        shortButton2.setOnClickListener(view -> onBtnShort(2));
+        longButton2.setOnClickListener(view -> onBtnLong(2));
+        letterButton2.setOnClickListener(view -> onBtnLetter(2));
+
+        shortButton3.setOnClickListener(view -> onBtnShort(3));
+        longButton3.setOnClickListener(view -> onBtnLong(3));
+        letterButton3.setOnClickListener(view -> onBtnLetter(3));
+
+        shortButton4.setOnClickListener(view -> onBtnShort(4));
+        longButton4.setOnClickListener(view -> onBtnLong(4));
+        letterButton4.setOnClickListener(view -> onBtnLetter(4));
+
     }
 
-    private void playLongTone(){ playSound(500); }
-    private void playShortTone(){ playSound(100); }
-
-    private void onBtnShort(){
-        playShortTone();
-    }
-    private void onBtnLong(){
-        playLongTone();
-    }
-
-    private void onBtnShort2(){
-        playSound1(200);
-    }
-    private void onBtnLong2(){
-        playSound2(200);
-    }
-
-    private void onBtnShort3(){
-        playSound3(200);
-    }
-    private void onBtnLong3(){
-        playSound4(200);
-    }
-
-    private void playLetter( Character c){
+    private void playLetter( Character c, int soundIdx){
         String morse = morseCode.getMorse(c);
 
         new Thread(() -> {
@@ -82,9 +59,9 @@ public class SoundActivity extends AppCompatActivity {
                 try {
                     for(int i = 0; i < morse.length(); i++){
                         if(morse.charAt(i) == '.'){
-                            playShortTone();
+                            playShortTone(soundIdx);
                         }else{
-                            playLongTone();
+                            playLongTone(soundIdx);
                         }
                         toneGenerator.wait(100+500);
                     }
@@ -95,7 +72,20 @@ public class SoundActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void onBtnLetter(){
-        playLetter('h');
+    private void playSound(int i, int len){
+        switch (i){
+            case 1 : toneGenerator.startTone(ToneGenerator.TONE_DTMF_8,len); break;
+            case 2 : toneGenerator.startTone(ToneGenerator.TONE_PROP_NACK, len); break;
+            case 3 : toneGenerator.startTone(ToneGenerator.TONE_SUP_DIAL, len); break;
+            case 4 : toneGenerator.startTone(ToneGenerator.TONE_CDMA_DIAL_TONE_LITE, len); break;
+        }
     }
+
+    private void playLongTone(int i){playSound(i, 500);}
+    private void playShortTone(int i){playSound(i, 100);}
+    private void onBtnShort(int i){
+        playShortTone(i);
+    }
+    private void onBtnLong(int i){ playLongTone(i);}
+    private void onBtnLetter(int i){ playLetter('x', i); }
 }
