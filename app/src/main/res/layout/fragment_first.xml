@@ -10,7 +10,11 @@
         android:id="@+id/textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" "
+        android:fontFamily="monospace"
+        android:text="Let's learn morse code!"
+        android:textColor="@color/brown"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/button_first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +45,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alphabet"
+        app:layout_constraintBottom_toTopOf="@+id/soundButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="531dp" />
+        app:layout_constraintTop_toBottomOf="@+id/button_first" />
+
+    <Button
+        android:id="@+id/MorseToLetterAlphabet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Morse To Alphabet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

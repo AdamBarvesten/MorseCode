@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_learnAlphabetActivity"
             app:destination="@id/learnAlphabetActivity" />
+        <action
+            android:id="@+id/action_FirstFragment_to_morseToLetterActivity"
+            app:destination="@id/morseToLetterActivity" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -42,4 +45,9 @@
         android:name="com.example.morsecode.LearnAlphabetActivity"
         android:label="activity_learn_alphabet"
         tools:layout="@layout/activity_learn_alphabet" />
+    <activity
+        android:id="@+id/morseToLetterActivity"
+        android:name="com.example.morsecode.MorseToLetterActivity"
+        android:label="activity_morse_to_letter"
+        tools:layout="@layout/activity_morse_to_letter" />
 </navigation>
