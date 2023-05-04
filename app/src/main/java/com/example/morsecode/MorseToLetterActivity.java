@@ -37,7 +37,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
         mainImage = findViewById(R.id.mainImage);
         randomLetterView = findViewById(R.id.randomLetter);
         generateRandomletter();
-        generateMorseImage("b");
+        generateMorseImage("a");
 
         Button enterButton = findViewById(R.id.enterButton);
         EditText mEdit = findViewById(R.id.editTextLetter);
@@ -62,7 +62,6 @@ public class MorseToLetterActivity extends AppCompatActivity {
             return;
         }
         Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
-        return;
     }
 
     private void generateMorseImage(String s){
@@ -87,6 +86,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 12) {
                 generateRandomletter();
+                generateMorseImage("b");
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
         }
