@@ -8,6 +8,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private final MorseCode morseCode = new MorseCode();
     private String randomLetter;
     private ImageView mainImage;
+    private TextView randomLetterView;
 
     private SensorManager mSensorManager;
     private float mAccel;
@@ -30,12 +34,17 @@ public class MorseToLetterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_to_letter);
 
-        randomLetter = morseCode.getRandomLetter();
         mainImage = findViewById(R.id.mainImage);
-
-        TextView randomLetterView = findViewById(R.id.randomLetter);
-        randomLetterView.setText(randomLetter);
+        randomLetterView = findViewById(R.id.randomLetter);
+        generateRandomletter();
         generateMorseImage("b");
+
+        Button enterButton = findViewById(R.id.enterButton);
+        EditText mEdit = findViewById(R.id.editTextLetter);
+        enterButton.setOnClickListener(v -> {
+            checkAnswer(mEdit.getText());
+        });
+
 
         // SENSOR
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -47,8 +56,22 @@ public class MorseToLetterActivity extends AppCompatActivity {
         //SENSOR
     }
 
+    private void checkAnswer(Editable text) {
+        if(randomLetter.equals(text.toString().toLowerCase())){
+            Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
+        return;
+    }
+
     private void generateMorseImage(String s){
         mainImage.setImageResource(getResources().getIdentifier(s + "morse","drawable",getPackageName()));
+    }
+
+    private void generateRandomletter(){
+        randomLetter = morseCode.getRandomLetter();
+        randomLetterView.setText(randomLetter);
     }
 
     //SENSOR
@@ -63,7 +86,8 @@ public class MorseToLetterActivity extends AppCompatActivity {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 12) {
-                Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
+                generateRandomletter();
+                //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
         }
         @Override
