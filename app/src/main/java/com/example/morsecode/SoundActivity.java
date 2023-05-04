@@ -1,6 +1,5 @@
 package com.example.morsecode;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.AudioManager;
@@ -23,15 +22,15 @@ public class SoundActivity extends AppCompatActivity {
 
         Button shortButton2 = findViewById(R.id.shortButton2);
         Button longButton2 = findViewById(R.id.longButton2);
-        Button letterButton2 = findViewById(R.id.letterButton2);
+        //Button letterButton2 = findViewById(R.id.letterButton2);
 
         Button shortButton3 = findViewById(R.id.shortButton3);
         Button longButton3 = findViewById(R.id.longButton3);
-        Button letterButton3 = findViewById(R.id.letterButton3);
+        //Button letterButton3 = findViewById(R.id.letterButton3);
 
-        Button shortButton4 = findViewById(R.id.shortButton4);
-        Button longButton4 = findViewById(R.id.longButton4);
-        Button letterButton4 = findViewById(R.id.letterButton4);
+        //Button shortButton4 = findViewById(R.id.shortButton4);
+        //Button longButton4 = findViewById(R.id.longButton4);
+        //Button letterButton4 = findViewById(R.id.letterButton4);
 
         shortButton.setOnClickListener(view -> onBtnShort(1));
         longButton.setOnClickListener(view -> onBtnLong(1));
@@ -39,15 +38,15 @@ public class SoundActivity extends AppCompatActivity {
 
         shortButton2.setOnClickListener(view -> onBtnShort(2));
         longButton2.setOnClickListener(view -> onBtnLong(2));
-        letterButton2.setOnClickListener(view -> onBtnLetter(2));
+        //letterButton2.setOnClickListener(view -> onBtnLetter(2));
 
         shortButton3.setOnClickListener(view -> onBtnShort(3));
         longButton3.setOnClickListener(view -> onBtnLong(3));
-        letterButton3.setOnClickListener(view -> onBtnLetter(3));
+        //letterButton3.setOnClickListener(view -> onBtnLetter(3));
 
-        shortButton4.setOnClickListener(view -> onBtnShort(4));
-        longButton4.setOnClickListener(view -> onBtnLong(4));
-        letterButton4.setOnClickListener(view -> onBtnLetter(4));
+        //shortButton4.setOnClickListener(view -> onBtnShort(4));
+        //longButton4.setOnClickListener(view -> onBtnLong(4));
+        //letterButton4.setOnClickListener(view -> onBtnLetter(4));
 
     }
 

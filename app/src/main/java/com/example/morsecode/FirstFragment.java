@@ -2,7 +2,6 @@ package com.example.morsecode;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ public class FirstFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
@@ -37,30 +36,17 @@ public class FirstFragment extends Fragment {
 
         view.findViewById(R.id.button_first).setOnClickListener(view1 -> startAccelerometer());
 
-        binding.soundButton.setOnClickListener(view12 -> NavHostFragment.findNavController(FirstFragment.this)
+        binding.soundButton.setOnClickListener(view12 ->
+                NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SoundActivity));
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAccelerometer();
-            }
-        });
 
-        binding.soundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SoundActivity);
-            }
-        });
+        view.findViewById(R.id.button_first).setOnClickListener(view13 -> startAccelerometer());
 
-        binding.alphabetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_learnAlphabetActivity);
-            }
-        });
+        binding.soundButton.setOnClickListener(view14 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_SoundActivity));
+
+        binding.alphabetButton.setOnClickListener(view15 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_learnAlphabetActivity));
     }
 
     @Override

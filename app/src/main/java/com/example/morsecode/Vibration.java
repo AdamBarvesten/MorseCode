@@ -36,62 +36,29 @@ public class Vibration extends AppCompatActivity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         //Alternativ 1 - kort
-        shortVibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(200);
-            }
-        });
+        shortVibrate.setOnClickListener(view -> vibrator.vibrate(200));
 
         //Alternativ 1 - lång
-        longVibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(500);
-            }
-        });
+        longVibrate.setOnClickListener(view -> vibrator.vibrate(500));
 
         //Alternativ 2 - kort
-        vibrations2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(100);
-            }
-        });
+        vibrations2.setOnClickListener(view -> vibrator.vibrate(100));
 
         //Alternativ 2 - lång
-        vibrationl2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(300);
-            }
-        });
+        vibrationl2.setOnClickListener(view -> vibrator.vibrate(300));
 
         //Alternativ 3 - kort
-        vibrations3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(200);
-            }
-        });
+        vibrations3.setOnClickListener(view -> vibrator.vibrate(200));
 
         //Alternativ 3 - lång
-        vibrationl3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vibrator.vibrate(400);
-            }
-        });
+        vibrationl3.setOnClickListener(view -> vibrator.vibrate(400));
 
-        letter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long[] timings = new long[] {200, 200, 500};
-                int[] amplitudes = new int[] { 100, 0, 100 };
-                int repeatIndex = -1;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, repeatIndex));
-                }
+        letter.setOnClickListener(view -> {
+            long[] timings = new long[] {200, 200, 500};
+            int[] amplitudes = new int[] { 100, 0, 100 };
+            int repeatIndex = -1;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, repeatIndex));
             }
         });
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -19,19 +18,11 @@ public class LearnAlphabetActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_layout);
         ImageView imageView = dialog.findViewById(R.id.a_morse_img);
 
-        aButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageView.setImageResource(R.drawable.amorse);
-                dialog.show();
-            }
+        aButton.setOnClickListener(v -> {
+            imageView.setImageResource(R.drawable.amorse);
+            dialog.show();
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        imageView.setOnClickListener(v -> dialog.dismiss());
     }
 }
