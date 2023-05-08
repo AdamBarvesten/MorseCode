@@ -7,11 +7,11 @@ import java.util.Random;
 public class MorseCode {
     private static final char[] swedish = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-            'y', 'z', 'å', 'ä', 'ö'};
+            'y', 'z'};
 
     private static final String[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
             ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
-            "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".--.-", ".-.-", "---." };
+            "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
 
     private static final Map<Character, String> SE_TO_MORSE = new HashMap<>();
     private static final Map<String, Character> MORSE_TO_SE = new HashMap<>();

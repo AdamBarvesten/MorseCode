@@ -37,12 +37,12 @@ public class MorseToLetterActivity extends AppCompatActivity {
         mainImage = findViewById(R.id.mainImage);
         randomLetterView = findViewById(R.id.randomLetter);
         generateRandomletter();
-        generateMorseImage("a");
 
         Button enterButton = findViewById(R.id.enterButton);
         EditText mEdit = findViewById(R.id.editTextLetter);
         enterButton.setOnClickListener(v -> {
             checkAnswer(mEdit.getText());
+            mEdit.setText("");
         });
 
 
@@ -59,18 +59,21 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private void checkAnswer(Editable text) {
         if(randomLetter.equals(text.toString().toLowerCase())){
             Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
+            generateRandomletter();
+
             return;
         }
         Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
     }
 
     private void generateMorseImage(String s){
-        mainImage.setImageResource(getResources().getIdentifier(s + "morse","drawable",getPackageName()));
+        mainImage.setImageResource(getResources().getIdentifier(s + "morse_code","drawable",getPackageName()));
     }
 
     private void generateRandomletter(){
         randomLetter = morseCode.getRandomLetter();
         randomLetterView.setText(randomLetter);
+        generateMorseImage(randomLetter);
     }
 
     //SENSOR
@@ -81,12 +84,11 @@ public class MorseToLetterActivity extends AppCompatActivity {
             float y = event.values[1];
             float z = event.values[2];
             mAccelLast = mAccelCurrent;
-            mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+            mAccelCurrent = (float) Math.sqrt((x * x + y * y + z * z));
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 12) {
                 generateRandomletter();
-                generateMorseImage("b");
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
         }
