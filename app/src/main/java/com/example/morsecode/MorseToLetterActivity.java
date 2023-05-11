@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Objects;
 
 public class MorseToLetterActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private float mAccel;
     private float mAccelCurrent;
     private float mAccelLast;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
         mainImage = findViewById(R.id.mainImage);
         randomLetterView = findViewById(R.id.randomLetter);
         generateRandomletter();
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.whoosh);
         Button enterButton = findViewById(R.id.enterButton);
         EditText mEdit = findViewById(R.id.editTextLetter);
         enterButton.setOnClickListener(v -> {
@@ -88,10 +91,14 @@ public class MorseToLetterActivity extends AppCompatActivity {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 12) {
+                mediaPlayer.start();
+
                 generateRandomletter();
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
         }
+
+
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
