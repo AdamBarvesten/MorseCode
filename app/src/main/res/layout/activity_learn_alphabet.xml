@@ -27,8 +27,7 @@
             <Button
                 android:id="@+id/button_a"
                 style="@style/alphabetButtonStyle"
-                android:text="A"
-                />
+                android:text="A" />
 
             <Button
                 android:id="@+id/button_b"
