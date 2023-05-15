@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class SoundActivity extends AppCompatActivity {
-    private final ToneGenerator toneGenerator =  new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+    private final ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
     private final MorseCode morseCode = new MorseCode();
+
+    private final SoundManager soundManager = new SoundManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,10 @@ public class SoundActivity extends AppCompatActivity {
 
     }
 
-    private void playLetter( Character c, int soundIdx){
+    public void playLetter( Character c) {
+        playLetter(c, 2);
+    }
+        private void playLetter( Character c, int soundIdx){
         String morse = morseCode.getMorse(c);
 
         new Thread(() -> {
@@ -80,6 +85,8 @@ public class SoundActivity extends AppCompatActivity {
         }
     }
 
+    public void playLongTone(){ playLongTone(2);}
+    public void playShortTone(){ playShortTone(2);}
     private void playLongTone(int i){playSound(i, 500);}
     private void playShortTone(int i){playSound(i, 100);}
     private void onBtnShort(int i){

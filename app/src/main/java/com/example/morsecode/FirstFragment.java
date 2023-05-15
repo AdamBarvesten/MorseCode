@@ -51,6 +51,9 @@ public class FirstFragment extends Fragment {
         binding.MorseToLetterAlphabet.setOnClickListener(view16 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_morseToLetterActivity));
 
+        binding.LetterToMorseAlphabet.setOnClickListener(view17 -> NavHostFragment.findNavController(FirstFragment.this)
+                .navigate(R.id.action_FirstFragment_to_letterToMorseActivity));
+
     }
 
     @Override

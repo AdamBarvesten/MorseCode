@@ -19,8 +19,6 @@ public class Vibration extends AppCompatActivity {
     Button vibrations3;
     Button letter;
     Vibrator vibrator;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +61,9 @@ public class Vibration extends AppCompatActivity {
         });
 
     }
+
+    public void playLongVibration(){ vibrator.vibrate(100);}
+    public void playShortVibration(){ vibrator.vibrate(200);}
 
 
 }

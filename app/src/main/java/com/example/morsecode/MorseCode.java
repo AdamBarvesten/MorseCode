@@ -31,14 +31,20 @@ public class MorseCode {
         return SE_TO_MORSE.get(c);
     }
 
-    public char getLetter(String s){
-        return MORSE_TO_SE.get(s);
+    public String getLetter(String s){
+        return String.valueOf(MORSE_TO_SE.get(s));
     }
 
     public String getRandomLetter(){
         int rnd = new Random().nextInt(swedish.length);
         return String.valueOf(swedish[rnd]);
     }
+
+    public String getRandomMorse(){
+        int rnd = new Random().nextInt(morse.length);
+        return String.valueOf(morse[rnd]);
+    }
+
 
 
 }
