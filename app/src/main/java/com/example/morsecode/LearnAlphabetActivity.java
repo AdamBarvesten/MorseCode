@@ -15,6 +15,8 @@ import android.widget.Toast;
 public class LearnAlphabetActivity extends AppCompatActivity {
     private final MorseCode morseCode = new MorseCode();
     Vibrator vibrator;
+    VibrationManager vibrationManager;
+    SoundManager soundManager;
     private final ToneGenerator toneGenerator =  new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.TONE_SUP_DIAL);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,8 @@ public class LearnAlphabetActivity extends AppCompatActivity {
         Button playButton = dialog.findViewById(R.id.play_button);
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE); // Initialize the vibrator
-
+        vibrationManager = new VibrationManager(this);
+        soundManager = new SoundManager();
         aButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,8 +44,9 @@ public class LearnAlphabetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
-
-                playLetter('A', 0); // Provide the appropriate arguments to playLetter() method
+                soundManager.playLetter('A');
+                vibrationManager.playLetter('a');
+                //playLetter('A', 0); // Provide the appropriate arguments to playLetter() method
             }
         });
     }

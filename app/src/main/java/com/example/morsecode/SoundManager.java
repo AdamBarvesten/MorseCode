@@ -12,7 +12,7 @@ public class SoundManager {
     }
 
     public void playLetter( Character c) {
-        playLetter(c, 2);
+        playLetter(Character.toLowerCase(c), 2);
     }
     private void playLetter( Character c, int soundIdx){
         String morse = morseCode.getMorse(c);
