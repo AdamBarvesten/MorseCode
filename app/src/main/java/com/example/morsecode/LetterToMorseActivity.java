@@ -10,7 +10,10 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputType;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,6 +56,11 @@ public class LetterToMorseActivity extends AppCompatActivity {
 
         Button enterButton = findViewById(R.id.enterButton);
         mEdit = findViewById(R.id.editTextLetter);
+
+        mEdit.setCursorVisible(false);
+        mEdit.setFocusableInTouchMode(false);
+        mEdit.setFocusable(false);
+
         enterButton.setOnClickListener(v -> {
             checkAnswer(mEdit.getText());
             mEdit.setText("");
@@ -104,7 +112,6 @@ public class LetterToMorseActivity extends AppCompatActivity {
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
         mAccelLast = SensorManager.GRAVITY_EARTH;
     }
-
 
     private void generateRandomOutput(){
         randomLetterOutput = morseCode.getRandomMorse();
