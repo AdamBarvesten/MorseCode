@@ -68,10 +68,10 @@ public class MorseToLetterActivity extends AppCompatActivity {
         Button motcoef4 = findViewById(R.id.motcoef_4);
 
 
-        motcoef1.setOnClickListener(v -> motioncoefficient = 35);
-        motcoef2.setOnClickListener(v -> motioncoefficient = 12);
-        motcoef3.setOnClickListener(v -> motioncoefficient = 6);
-        motcoef4.setOnClickListener(v -> motioncoefficient = 20);
+        motcoef1.setOnClickListener(v -> motioncoefficient = 3);
+        motcoef2.setOnClickListener(v -> motioncoefficient = 6);
+        motcoef3.setOnClickListener(v -> motioncoefficient = 12);
+        motcoef4.setOnClickListener(v -> motioncoefficient = 25);
         // SENSOR
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Objects.requireNonNull(mSensorManager).registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -101,8 +101,8 @@ public class MorseToLetterActivity extends AppCompatActivity {
 
     private void generateRandomletter(){
         randomLetter = morseCode.getRandomLetter();
-        randomLetterView.setText(randomLetter);
         generateMorseImage(randomLetter);
+        randomLetterView.setText("");
     }
 
     //SENSOR
@@ -128,8 +128,11 @@ public class MorseToLetterActivity extends AppCompatActivity {
                 }
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
-        }
 
+            if (event.values[1] < -8) {
+                randomLetterView.setText(randomLetter);
+            }
+        }
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {

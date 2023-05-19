@@ -57,6 +57,7 @@ public class LetterToMorseActivity extends AppCompatActivity {
         Button enterButton = findViewById(R.id.enterButton);
         mEdit = findViewById(R.id.editTextLetter);
 
+        //hide keyboard
         mEdit.setCursorVisible(false);
         mEdit.setFocusableInTouchMode(false);
         mEdit.setFocusable(false);
@@ -115,8 +116,8 @@ public class LetterToMorseActivity extends AppCompatActivity {
 
     private void generateRandomOutput(){
         randomLetterOutput = morseCode.getRandomMorse();
-        randomMorseView.setText(randomLetterOutput);
         generateMorseImage(randomLetterOutput);
+        randomMorseView.setText("");
     }
 
     private void generateMorseImage(String s){
@@ -166,9 +167,14 @@ public class LetterToMorseActivity extends AppCompatActivity {
             mAccelCurrent = (float) Math.sqrt((x * x + y * y + z * z));
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
+
             if (mAccel > 12) {
                 generateRandomOutput();
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
+            }
+
+            if (event.values[1] < -8) {
+                randomMorseView.setText(randomLetterOutput);
             }
         }
         @Override
