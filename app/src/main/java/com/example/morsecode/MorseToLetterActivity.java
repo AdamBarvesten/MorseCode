@@ -40,7 +40,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private long lastEventTime = 0;
     private final long EVENT_THRESHOLD_MS = 700;
 
-    private int motioncoefficient = 35;
+    private int motioncoefficient = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,8 +7,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -39,6 +41,12 @@ public class LetterToMorseActivity extends AppCompatActivity {
     private Handler handler;
     private boolean isLongPress = false;
     EditText mEdit;
+    Vibrator vibrator;
+    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayerPositive;
+    MediaPlayer mediaPlayerNegative;
+    private long lastEventTime = 0;
+    private final long EVENT_THRESHOLD_MS = 700;
 
 
 
@@ -53,9 +61,13 @@ public class LetterToMorseActivity extends AppCompatActivity {
         mainImage = findViewById(R.id.mainImage);
         randomMorseView = findViewById(R.id.randomLetter);
         generateRandomOutput();
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.whoosh);
+        mediaPlayerPositive = MediaPlayer.create(this, R.raw.pling);
+        mediaPlayerPositive.setVolume(0.1f, 0.1f);
+        mediaPlayerNegative = MediaPlayer.create(this, R.raw.error);
         Button enterButton = findViewById(R.id.enterButton);
         mEdit = findViewById(R.id.editTextLetter);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         //hide keyboard
         mEdit.setCursorVisible(false);
@@ -129,9 +141,14 @@ public class LetterToMorseActivity extends AppCompatActivity {
         if(randomLetterOutput.equals(text.toString().toLowerCase())){
             Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
             generateRandomOutput();
+            mediaPlayerPositive.start();
+            vibrator.vibrate(500);
             return;
+        }else {
+            Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
+            mediaPlayerNegative.start();
+            vibrator.vibrate(100);
         }
-        Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -168,8 +185,16 @@ public class LetterToMorseActivity extends AppCompatActivity {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
 
-            if (mAccel > 12) {
-                generateRandomOutput();
+            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastEventTime >= EVENT_THRESHOLD_MS) {
+                    if (mAccel > 12) {
+                        mediaPlayer.start();
+                        generateRandomOutput();
+                        vibrator.vibrate(100);
+                        lastEventTime = currentTime;
+                    }
+                }
                 //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
 
