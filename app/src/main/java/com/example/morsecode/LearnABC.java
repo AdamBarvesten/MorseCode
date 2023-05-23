@@ -65,7 +65,7 @@ public class LearnABC extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_letter_to_morse);
+        setContentView(R.layout.activity_learn_abc);
 
 
         //gravity
@@ -137,12 +137,12 @@ public class LearnABC extends AppCompatActivity implements SensorEventListener {
 
         final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_layout_help_morse);
-        Button helpButton = findViewById(R.id.help_button);
-        ImageView helpImage = findViewById(R.id.help_picture);
+        Button helpButton = findViewById(R.id.help_button2);
+        ImageView helpImage3 = findViewById(R.id.help_picture3);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helpImage.setImageResource(R.drawable.vaxkaka_help_morse);
+                helpImage3.setImageResource(R.drawable.vaxkaka_help_morse_alph);
                 dialog.show();
             }
         });

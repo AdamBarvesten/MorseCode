@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-35dp" />
 
     <TextView
         android:id="@+id/randomLetter"
@@ -56,12 +56,12 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <ImageView
-        android:id="@+id/help_picture"
+        android:id="@+id/help_picture3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/vaxkaka_help_morse"
+        android:src="@drawable/vaxkaka_help_morse_alph"
         android:visibility="gone" />
 
     <Button
@@ -159,7 +159,7 @@
 
 
     <Button
-        android:id="@+id/help_button"
+        android:id="@+id/help_button2"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/round_button"
@@ -174,17 +174,33 @@
     <Switch
         android:id="@+id/switch1"
 
-        android:layout_width="59dp"
+        android:layout_width="48dp"
         android:layout_height="59dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
-        android:textSize="12sp"
-        android:textStyle="bold"
+        android:textOff="Manual"
+        android:textOn="Automatic"
         android:thumbTint="@color/brown"
         android:trackTint="#393939"
-        tools:checked="false"
-        tools:layout_editor_absoluteX="331dp"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toEndOf="@+id/mainImage"
+        app:layout_constraintTop_toBottomOf="@+id/help_button2"
+        app:layout_constraintVertical_bias="0.03"
+        tools:checked="false" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODE"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mainImage"
+        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
