@@ -148,14 +148,9 @@ public class LetterToMorseActivity extends AppCompatActivity {
         }
     }
 
-
-
-    private Runnable longPressRunnable = new Runnable() {
-        @Override
-        public void run() {
-            isLongPress = true;
-            appendDash();
-        }
+    private Runnable longPressRunnable = () -> {
+        isLongPress = true;
+        appendDash();
     };
 
     private void appendDot() {
@@ -192,7 +187,6 @@ public class LetterToMorseActivity extends AppCompatActivity {
                         lastEventTime = currentTime;
                     }
                 }
-                //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
 
             if (event.values[1] < -8) {

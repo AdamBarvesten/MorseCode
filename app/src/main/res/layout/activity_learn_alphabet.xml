@@ -176,20 +176,6 @@
                 style="@style/alphabetButtonStyle"
                 android:text="Z" />
 
-            <Button
-                android:id="@+id/button_å"
-                style="@style/alphabetButtonStyle"
-                android:text="Å" />
-
-            <Button
-                android:id="@+id/button_ä"
-                style="@style/alphabetButtonStyle"
-                android:text="Ä" />
-
-            <Button
-                android:id="@+id/button_ö"
-                style="@style/alphabetButtonStyle"
-                android:text="Ö" />
         </TableRow>
     </TableLayout>
 
