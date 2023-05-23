@@ -2,20 +2,24 @@ package com.example.morsecode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +48,10 @@ public class LetterToMorseActivity extends AppCompatActivity {
     MediaPlayer mediaPlayerNegative;
     private long lastEventTime = 0;
     private final long EVENT_THRESHOLD_MS = 700;
+
+    private LinearLayout buttonSet1;
+    private LinearLayout buttonSet2;
+    private boolean isToggleOn = false;
 
 
 
@@ -81,6 +89,7 @@ public class LetterToMorseActivity extends AppCompatActivity {
             appendDot();
         });
 
+
         Button dashButton = findViewById(R.id.dash_button);
         dashButton.setOnClickListener(v ->{
             appendDash();
@@ -113,6 +122,30 @@ public class LetterToMorseActivity extends AppCompatActivity {
             return false;
         });
 
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+        dialog.setContentView(R.layout.dialog_layout_help_morse);
+        Button helpButton = findViewById(R.id.help_button);
+        ImageView helpImage = findViewById(R.id.help_picture);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpImage.setImageResource(R.drawable.vaxkaka_help_morse);
+                dialog.show();
+            }
+        });
+
+        buttonSet1 = findViewById(R.id.buttonSet1);
+        buttonSet2 = findViewById(R.id.buttonSet2);
+
+        // Toggle button to swap between sets
+        Button toggleButton = findViewById(R.id.switch1);
+        toggleButton.setOnClickListener(v -> {
+            isToggleOn = !isToggleOn;
+            updateButtonSetsVisibility();
+        });
+
+        // Set initial button set visibility
+        //updateButtonSetsVisibility();
 
         // SENSOR
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -187,6 +220,7 @@ public class LetterToMorseActivity extends AppCompatActivity {
                         lastEventTime = currentTime;
                     }
                 }
+                //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
 
             if (event.values[1] < -8) {
@@ -207,6 +241,16 @@ public class LetterToMorseActivity extends AppCompatActivity {
     protected void onPause() {
         mSensorManager.unregisterListener(mSensorListener);
         super.onPause();
+    }
+
+    private void updateButtonSetsVisibility() {
+        if (isToggleOn) {
+            buttonSet1.setVisibility(View.GONE);
+            buttonSet2.setVisibility(View.VISIBLE);
+        } else {
+            buttonSet1.setVisibility(View.VISIBLE);
+            buttonSet2.setVisibility(View.GONE);
+        }
     }
     //SENSOR
 }
