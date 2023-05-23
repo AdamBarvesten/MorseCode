@@ -11,14 +11,12 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.util.Objects;
 
 public class MorseToLetterActivity extends AppCompatActivity {
@@ -52,8 +50,8 @@ public class MorseToLetterActivity extends AppCompatActivity {
         generateRandomletter();
         mediaPlayer = MediaPlayer.create(this, R.raw.whoosh);
         mediaPlayerPositive = MediaPlayer.create(this, R.raw.pling);
-        mediaPlayerPositive.setVolume(0.1f, 0.1f);
-        mediaPlayerNegative = MediaPlayer.create(this, R.raw.error);
+        mediaPlayerPositive.setVolume(0.3f, 0.3f);
+        mediaPlayerNegative = MediaPlayer.create(this, R.raw.error2);
         Button enterButton = findViewById(R.id.enterButton);
         EditText mEdit = findViewById(R.id.editTextLetter);
         enterButton.setOnClickListener(v -> {
