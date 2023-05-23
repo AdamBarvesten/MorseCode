@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class MorseToLetterActivity extends AppCompatActivity {
+public class MorseToLetterActivity extends AppCompatActivity implements SensorEventListener {
 
     private final MorseCode morseCode = new MorseCode();
     private String randomLetter;
@@ -39,11 +39,18 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private final long EVENT_THRESHOLD_MS = 700;
 
     private int motioncoefficient = 12;
+    private SensorManager sensorManager;
+    private Sensor gravitySensor;
+    private long startTime = 0;
+    private boolean isConditionMet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_to_letter);
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
         mainImage = findViewById(R.id.mainImage);
         randomLetterView = findViewById(R.id.randomLetter);
@@ -124,11 +131,6 @@ public class MorseToLetterActivity extends AppCompatActivity {
                         lastEventTime = currentTime;
                     }
                 }
-                //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
-            }
-
-            if (event.values[1] < -8) {
-                randomLetterView.setText(randomLetter);
             }
         }
 
@@ -138,14 +140,37 @@ public class MorseToLetterActivity extends AppCompatActivity {
     };
     @Override
     protected void onResume() {
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_NORMAL);
         super.onResume();
+        sensorManager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
     @Override
     protected void onPause() {
-        mSensorManager.unregisterListener(mSensorListener);
         super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
+            float y = event.values[1];
+            if (y < -5 && !isConditionMet) {
+                if (startTime == 0) {
+                    startTime = System.currentTimeMillis();
+                } else if (System.currentTimeMillis() - startTime >= 600) {
+                    isConditionMet = true;
+                    randomLetterView.setText(randomLetter);
+                }
+            } else {
+                startTime = 0;
+                isConditionMet = false;
+            }
+        }
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
     //SENSOR
 }

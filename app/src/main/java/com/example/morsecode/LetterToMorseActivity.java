@@ -12,16 +12,22 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.text.Editable;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
 
-public class LetterToMorseActivity extends AppCompatActivity {
+public class LetterToMorseActivity extends AppCompatActivity implements SensorEventListener  {
 
     private final MorseCode morseCode = new MorseCode();
     private String randomLetterOutput;
@@ -45,12 +51,22 @@ public class LetterToMorseActivity extends AppCompatActivity {
     private long lastEventTime = 0;
     private final long EVENT_THRESHOLD_MS = 700;
 
+    private SensorManager sensorManager;
+    private Sensor gravitySensor;
+
+    private long startTime = 0;
+    private boolean isConditionMet = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letter_to_morse);
+
+        //gravity
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+
 
         vibrationManager = new VibrationManager(this);
         handler = new Handler();
@@ -188,10 +204,6 @@ public class LetterToMorseActivity extends AppCompatActivity {
                     }
                 }
             }
-
-            if (event.values[1] < -8) {
-                randomMorseView.setText(randomLetterOutput);
-            }
         }
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -199,14 +211,39 @@ public class LetterToMorseActivity extends AppCompatActivity {
     };
     @Override
     protected void onResume() {
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_NORMAL);
         super.onResume();
+        sensorManager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
     @Override
     protected void onPause() {
-        mSensorManager.unregisterListener(mSensorListener);
         super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // Check if the sensor event is from the gravity sensor
+        if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
+            float y = event.values[1];
+            // Check the condition
+            if (y < -5 && !isConditionMet) {
+                if (startTime == 0) {
+                    startTime = System.currentTimeMillis();
+                } else if (System.currentTimeMillis() - startTime >= 600) {
+                    isConditionMet = true;
+                    //Toast.makeText(this, "Condition met for 600ms", Toast.LENGTH_SHORT).show();
+                    randomMorseView.setText(randomLetterOutput);
+                }
+            } else {
+                startTime = 0;
+                isConditionMet = false;
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
     //SENSOR
 }
