@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class LetterToMorseActivity extends AppCompatActivity {
+public class LetterToMorseActivity extends AppCompatActivity implements SensorEventListener {
 
     private final MorseCode morseCode = new MorseCode();
     private String randomLetterOutput;
