@@ -34,17 +34,6 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_first).setOnClickListener(view1 -> startAccelerometer());
-
-        binding.soundButton.setOnClickListener(view12 ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                .navigate(R.id.action_FirstFragment_to_SoundActivity));
-
-        view.findViewById(R.id.button_first).setOnClickListener(view13 -> startAccelerometer());
-
-        binding.soundButton.setOnClickListener(view14 -> NavHostFragment.findNavController(FirstFragment.this)
-                .navigate(R.id.action_FirstFragment_to_SoundActivity));
-
         binding.alphabetButton.setOnClickListener(view15 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_learnAlphabetActivity));
 
