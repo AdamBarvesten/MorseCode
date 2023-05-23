@@ -11,6 +11,7 @@
     <string name="letter">Letter</string>
     <string name="shortTone">Short Tone</string>
     <string name="longTone">Long Tone</string>
+    <string name= "Enter_letter"> Enter correct letter</string>
 
 
     <string name="hello_first_fragment">Hello first fragment</string>

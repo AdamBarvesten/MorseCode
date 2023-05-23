@@ -63,8 +63,9 @@ public class LetterToMorseActivity extends AppCompatActivity {
         generateRandomOutput();
         mediaPlayer = MediaPlayer.create(this, R.raw.whoosh);
         mediaPlayerPositive = MediaPlayer.create(this, R.raw.pling);
-        mediaPlayerPositive.setVolume(0.1f, 0.1f);
+        mediaPlayerPositive.setVolume(0.5f, 0.5f);
         mediaPlayerNegative = MediaPlayer.create(this, R.raw.error);
+        mediaPlayerNegative.setVolume(0.5f, 0.5f);
         Button enterButton = findViewById(R.id.enterButton);
         mEdit = findViewById(R.id.editTextLetter);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);

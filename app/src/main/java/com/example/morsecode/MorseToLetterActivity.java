@@ -62,7 +62,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
         });
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        Button motcoef1 = findViewById(R.id.motcoef_1);
+       /* Button motcoef1 = findViewById(R.id.motcoef_1);
         Button motcoef2 = findViewById(R.id.motcoef_2);
         Button motcoef3 = findViewById(R.id.motcoef_3);
         Button motcoef4 = findViewById(R.id.motcoef_4);
@@ -71,7 +71,7 @@ public class MorseToLetterActivity extends AppCompatActivity {
         motcoef1.setOnClickListener(v -> motioncoefficient = 3);
         motcoef2.setOnClickListener(v -> motioncoefficient = 6);
         motcoef3.setOnClickListener(v -> motioncoefficient = 12);
-        motcoef4.setOnClickListener(v -> motioncoefficient = 25);
+        motcoef4.setOnClickListener(v -> motioncoefficient = 25);*/
         // SENSOR
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Objects.requireNonNull(mSensorManager).registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),

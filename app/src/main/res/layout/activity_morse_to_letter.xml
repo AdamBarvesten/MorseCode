@@ -42,8 +42,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/Enter_letter"
         android:inputType="textPersonName"
         android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/enterButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,42 +63,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainImage"
         app:layout_constraintVertical_bias="0.25" />
-
-    <Button
-        android:id="@+id/motcoef_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterButton" />
-
-    <Button
-        android:id="@+id/motcoef_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test 2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/motcoef_1" />
-
-    <Button
-        android:id="@+id/motcoef_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/motcoef_2" />
-
-    <Button
-        android:id="@+id/motcoef_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test 4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/motcoef_3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
