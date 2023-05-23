@@ -2,6 +2,7 @@ package com.example.morsecode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,6 +15,7 @@ import android.text.Editable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,7 +26,7 @@ import android.widget.Toast;
 import java.util.Objects;
 import java.util.Timer;
 
-public class MorseToLetterActivity extends AppCompatActivity {
+public class MorseToLetterActivity extends AppCompatActivity implements SensorEventListener {
 
     private final MorseCode morseCode = new MorseCode();
     private String randomLetter;
@@ -44,11 +46,18 @@ public class MorseToLetterActivity extends AppCompatActivity {
     private final long EVENT_THRESHOLD_MS = 700;
 
     private int motioncoefficient = 12;
+    private SensorManager sensorManager;
+    private Sensor gravitySensor;
+    private long startTime = 0;
+    private boolean isConditionMet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_morse_to_letter);
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
         mainImage = findViewById(R.id.mainImage);
         randomLetterView = findViewById(R.id.randomLetter);
@@ -83,7 +92,21 @@ public class MorseToLetterActivity extends AppCompatActivity {
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
         mAccelLast = SensorManager.GRAVITY_EARTH;
         //SENSOR
+
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+        dialog.setContentView(R.layout.dialog_layout_help_letter);
+        Button helpButton2 = findViewById(R.id.help_button2);
+        ImageView helpImage2 = findViewById(R.id.help_picture2);
+        helpButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpImage2.setImageResource(R.drawable.vaxkaka_help_letter);
+                dialog.show();
+            }
+        });
     }
+
+
 
     private void checkAnswer(Editable text) {
         if(randomLetter.equals(text.toString().toLowerCase())){
@@ -158,11 +181,6 @@ public class MorseToLetterActivity extends AppCompatActivity {
                         lastEventTime = currentTime;
                     }
                 }
-                //Toast.makeText(getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
-            }
-
-            if (event.values[1] < -8) {
-                randomLetterView.setText(randomLetter);
             }
         }
 
@@ -172,14 +190,37 @@ public class MorseToLetterActivity extends AppCompatActivity {
     };
     @Override
     protected void onResume() {
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_NORMAL);
         super.onResume();
+        sensorManager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
     @Override
     protected void onPause() {
-        mSensorManager.unregisterListener(mSensorListener);
         super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
+            float y = event.values[1];
+            if (y < -5 && !isConditionMet) {
+                if (startTime == 0) {
+                    startTime = System.currentTimeMillis();
+                } else if (System.currentTimeMillis() - startTime >= 600) {
+                    isConditionMet = true;
+                    randomLetterView.setText(randomLetter);
+                }
+            } else {
+                startTime = 0;
+                isConditionMet = false;
+            }
+        }
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
     //SENSOR
 }

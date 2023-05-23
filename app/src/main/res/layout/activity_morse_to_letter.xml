@@ -15,6 +15,15 @@
         tools:layout_editor_absoluteX="38dp"
         tools:layout_editor_absoluteY="60dp" />
 
+    <ImageView
+        android:id="@+id/help_picture2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/vaxkaka_help_letter"
+        android:scaleType="centerCrop"
+        android:elevation="10dp" />
+
     <TextView
         android:id="@+id/randomLetter"
         android:layout_width="wrap_content"
@@ -80,5 +89,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06" />
 
+    <Button
+        android:id="@+id/help_button2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:gravity="center"
+        android:text="?"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/mainImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/mainImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
