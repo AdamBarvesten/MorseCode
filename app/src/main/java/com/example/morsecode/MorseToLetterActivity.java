@@ -2,6 +2,7 @@ package com.example.morsecode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -85,7 +87,21 @@ public class MorseToLetterActivity extends AppCompatActivity implements SensorEv
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
         mAccelLast = SensorManager.GRAVITY_EARTH;
         //SENSOR
+
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+        dialog.setContentView(R.layout.dialog_layout_help_letter);
+        Button helpButton2 = findViewById(R.id.help_button2);
+        ImageView helpImage2 = findViewById(R.id.help_picture2);
+        helpButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpImage2.setImageResource(R.drawable.vaxkaka_help_letter);
+                dialog.show();
+            }
+        });
     }
+
+
 
     private void checkAnswer(Editable text) {
         if(randomLetter.equals(text.toString().toLowerCase())){

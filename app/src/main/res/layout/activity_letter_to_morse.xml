@@ -55,43 +55,68 @@
         app:layout_constraintTop_toBottomOf="@+id/mainImage"
         app:layout_constraintVertical_bias="0.060000002" />
 
+    <ImageView
+        android:id="@+id/help_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/vaxkaka_help_morse"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainImage"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintTop_toTopOf="@+id/mainImage" />
 
-    <Button
-        android:id="@+id/dot_button"
-        android:layout_width="90sp"
-        android:layout_height="70sp"
-        android:text="·"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/tone_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLetter"
-        app:layout_constraintVertical_bias="0.509" />
 
-    <Button
-        android:id="@+id/dash_button"
-        android:layout_width="90sp"
-        android:layout_height="70sp"
-        android:text="-"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/tone_button"
+    <LinearLayout
+        android:id="@+id/buttonSet1"
+        android:layout_width="200dp"
+        android:layout_height="66dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.691"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLetter"
-        app:layout_constraintVertical_bias="0.509" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLetter">
+
+        <!-- Buttons of set 1 -->
+
+        <Button
+            android:id="@+id/dot_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="·"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/tone_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLetter"
+            app:layout_constraintVertical_bias="0.0" />/>
+
+        <Button
+            android:id="@+id/dash_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="-"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/tone_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLetter"
+            app:layout_constraintVertical_bias="0.0" />/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/backspace_button"
@@ -101,18 +126,68 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/tone_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dash_button"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLetter" />
+        app:layout_constraintStart_toEndOf="@+id/enterButton"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLetter"
+        app:layout_constraintVertical_bias="0.115" />
 
-    <Button
-        android:id="@+id/tone_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tone"
-        app:layout_constraintBottom_toTopOf="@+id/enterButton"
+    <LinearLayout
+        android:id="@+id/buttonSet2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLetter">
+
+        <!-- Buttons of set 2 -->
+
+        <Button
+            android:id="@+id/tone_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/round_button"
+            android:text="PRESS"
+            app:layout_constraintBottom_toTopOf="@+id/enterButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.86" />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/round_button"
+        android:gravity="center"
+        android:text="?"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/mainImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mainImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch1"
+
+        android:layout_width="48dp"
+        android:layout_height="59dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:textOff="Manual"
+        android:textOn="Automatic"
+        android:thumbTint="@color/brown"
+        android:trackTint="#393939"
+        app:layout_constraintBottom_toTopOf="@+id/mainImage"
+        app:layout_constraintEnd_toStartOf="@+id/mainImage"
+        app:layout_constraintStart_toStartOf="@+id/randomLetter"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="false" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
