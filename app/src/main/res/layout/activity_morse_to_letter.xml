@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:src="@drawable/background"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="60dp" />
 
     <TextView
         android:id="@+id/randomLetter"
@@ -63,6 +65,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainImage"
         app:layout_constraintVertical_bias="0.25" />
+
+    <View
+        android:id="@+id/toastView"
+        android:layout_width="173dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
