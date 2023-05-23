@@ -12,14 +12,19 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
+import java.util.Timer;
 
 public class MorseToLetterActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -105,13 +110,42 @@ public class MorseToLetterActivity extends AppCompatActivity implements SensorEv
 
     private void checkAnswer(Editable text) {
         if(randomLetter.equals(text.toString().toLowerCase())){
-            Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
+            // Inflate the popup layout
+
+            View popupView = getLayoutInflater().inflate(R.layout.popup, null);
+
+// Create the PopupWindow
+            PopupWindow popupWindow = new PopupWindow(popupView,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            popupWindow.showAtLocation(popupView, Gravity.TOP, 0, 0);
+            popupView.postDelayed(new Runnable(){
+                public void run()
+                {
+                    popupView.setVisibility(View.INVISIBLE);
+                }
+            }, 1500);
+
+
+           /* Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();*/
             generateRandomletter();
+
             mediaPlayerPositive.start();
             vibrator.vibrate(500);
             return;
         }
-        Toast.makeText(getApplicationContext(), "Wrong!!", Toast.LENGTH_SHORT).show();
+        View popupView = getLayoutInflater().inflate(R.layout.popup_wrong, null);
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.showAtLocation(popupView, Gravity.TOP, 0, 0);
+        popupView.postDelayed(new Runnable(){
+            public void run()
+            {
+                popupView.setVisibility(View.INVISIBLE);
+            }
+        }, 1500);
+
         mediaPlayerNegative.start();
         vibrator.vibrate(100);
     }
