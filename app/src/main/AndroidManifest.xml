@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MorseCode.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".LearnABC"
+            android:exported="false" />
+        <activity
             android:name=".LetterToMorseActivity"
             android:exported="false" />
         <activity

@@ -7,36 +7,77 @@
     tools:context=".FirstFragment">
 
     <Button
+        android:id="@+id/alfabetical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alphabetical Letters"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alphabetButton"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <Button
         android:id="@+id/alphabetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alphabet"
+        android:text="Lexicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <Button
         android:id="@+id/MorseToLetterAlphabet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Morse To Alphabet"
+        android:text="Randomize Morse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintTop_toBottomOf="@+id/LetterToMorseAlphabet"
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
         android:id="@+id/LetterToMorseAlphabet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alphabet to Morse"
+        android:text="Randomize Letters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MorseToLetterAlphabet"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintTop_toBottomOf="@+id/alfabetical"
+        app:layout_constraintVertical_bias="0.110000014" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="PLAY:"
+        android:textColor="@color/brown"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/alfabetical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alphabetButton"
+        app:layout_constraintVertical_bias="0.61" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="LEARN:"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/alphabetButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LetterToMorseActivity">
+    tools:context=".LearnABC">
 
     <ImageView
         android:id="@+id/imageView"
@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
-        tools:layout_editor_absoluteX="-58dp"
-        tools:layout_editor_absoluteY="141dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/randomLetter"
@@ -174,33 +174,17 @@
     <Switch
         android:id="@+id/switch1"
 
-        android:layout_width="48dp"
+        android:layout_width="59dp"
         android:layout_height="59dp"
         android:scaleX="1.5"
         android:scaleY="1.5"
-        android:textOff="Manual"
-        android:textOn="Automatic"
+        android:textSize="12sp"
+        android:textStyle="bold"
         android:thumbTint="@color/brown"
         android:trackTint="#393939"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
-        app:layout_constraintStart_toEndOf="@+id/mainImage"
-        app:layout_constraintTop_toBottomOf="@+id/help_button"
-        app:layout_constraintVertical_bias="0.03"
-        tools:checked="false" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MODE"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mainImage"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:checked="false"
+        tools:layout_editor_absoluteX="331dp"
+        tools:layout_editor_absoluteY="112dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
